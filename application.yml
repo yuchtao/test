@@ -1,0 +1,35 @@
+spring:
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            tags:
+              environment: ${spring.profiles}
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    sender:
+      type: kafka
+    kafka:
+      topic: ${zipkin.topic.name}
+    service:
+      name: ${spring.application.name}
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.rome.item.job  # 注意：对应实体类的路径
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
+  
+info:
+  tags:
+    environment: ${spring.profiles}

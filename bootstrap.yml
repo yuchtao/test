@@ -1,0 +1,106 @@
+spring:
+  profiles: dev-zt
+  application:
+    name: item-job
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+      label: master
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            tags:
+              environment: ${spring.profiles}
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: "http://10.0.13.15:8761/eureka/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  profiles: test
+  application:
+    name: item-job
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+      label: master
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            tags:
+              environment: ${spring.profiles}
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://zttest-master.eureka.arch.lyf.intl:8761/eureka,http://zttest-slaver.eureka.arch.lyf.intl:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  profiles: pro-zt
+  application:
+    name: item-job
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG-SERVER
+      label: master
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            tags:
+              environment: ${spring.profiles}
+
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://master-zt.eureka.arch.lyf.intl:8761/eureka,http://slave-zt.eureka.arch.lyf.intl:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
