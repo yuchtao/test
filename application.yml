@@ -33,3 +33,9 @@ pagehelper:
 info:
   tags:
     environment: ${spring.profiles}
+aa:
+  bbb:
+    ccc:122
+test
+
+test
