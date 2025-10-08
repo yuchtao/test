@@ -3,7 +3,5 @@ public class Hello {
         System.out.println("Hello World!");
         System.out.println("Hello World2");
         System.out.println("Hello World3");
-        System.out.println("test5分支提交");
-        System.out.println("test5分支提交第二次");
     }
 }
